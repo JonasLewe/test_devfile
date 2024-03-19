@@ -1,30 +1,28 @@
-schemaVersion: 2.1.0
+schemaVersion: 2.2.0
 metadata:
-  name: mlops-template
-  version: 1.0.0
-  displayName: MLOps Template
-  description: Devfile for the MLOps Template
-  projectType: python
-  language: python
+  name: devspaces-gpu
+attributes:
+#   controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: ephemeral
+# projects:
+#   - name: devspaces-gpu
+#     git:
+#       remotes:
+#         origin: "https://github.com/bkoz/devspaces.git"
+#       checkoutFrom:
+#         revision: main
 components:
-  - name: mlops-dev-container
+  - attributes:
+      container-overrides:
+        resources:
+          limits:
+            nvidia.com/gpu: '1'
+      controller.devfile.io/merge-contribution: true
     container:
-      image: registry.access.redhat.com/ubi9/python-39:1-165
-      args: ['tail', '-f', '/dev/null']
+      # image: ghcr.io/redhat-na-ssa/udi-cuda:11.8.0-cudnn8-devel-ubi8
+      image: ghcr.io/redhat-na-ssa/udi-cuda:latest
+      memoryLimit: 2G
+      cpuLimit: 1000m
       mountSources: true
-      memoryLimit: 2Gi  
-      endpoints:
-        - name: jupyter
-          targetPort: 8888
-          attributes:
-            protocol: http
-            secure: false
-            public: true
-commands:
-  - id: install-dependencies
-    exec:
-      commandLine: pip install poetry && poetry install --no-root 
-      workingDir: ${PROJECT_SOURCE}
-      component: mlops-dev-container
-      group:
-        kind: build
+      sourceMapping: /projects
+    name: python
