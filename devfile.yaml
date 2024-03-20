@@ -20,9 +20,12 @@ components:
             nvidia.com/gpu: '1'
       controller.devfile.io/merge-contribution: true
       tolerations:
-        - key: "node"
-          value: "ops"
-          effect: "NoSchedule"
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+        - key: node
+          value: ops
+          effect: NoSchedule
     container:
       image: ghcr.io/redhat-na-ssa/udi-cuda:latest
       memoryLimit: 256Mi
