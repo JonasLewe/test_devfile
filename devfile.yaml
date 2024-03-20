@@ -26,13 +26,13 @@ components:
       cpuLimit: 10m
       mountSources: true
       sourceMapping: /projects
-      tolerations:
-      #   - key: nvidia.com/gpu
-      #     operator: Exists
+      # tolerations:
+      # #   - key: nvidia.com/gpu
+      # #     operator: Exists
+      # #     effect: NoSchedule
+      #   - key: node
+      #     value: ops
       #     effect: NoSchedule
-        - key: node
-          value: ops
-          effect: NoSchedule
     name: python
 
 # schemaVersion: 2.2.0
