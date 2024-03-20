@@ -19,6 +19,13 @@ components:
           requests:
             nvidia.com/gpu: '1'
       controller.devfile.io/merge-contribution: true
+      
+    container:
+      image: ghcr.io/redhat-na-ssa/udi-cuda:latest
+      memoryLimit: 256Mi
+      cpuLimit: 10m
+      mountSources: true
+      sourceMapping: /projects
       tolerations:
       #   - key: nvidia.com/gpu
       #     operator: Exists
@@ -26,10 +33,4 @@ components:
         - key: node
           value: ops
           effect: NoSchedule
-    container:
-      image: ghcr.io/redhat-na-ssa/udi-cuda:latest
-      memoryLimit: 256Mi
-      cpuLimit: 10m
-      mountSources: true
-      sourceMapping: /projects
     name: python
