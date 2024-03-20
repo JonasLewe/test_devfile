@@ -38,6 +38,15 @@
 schemaVersion: 2.2.0
 metadata:
   name: devspaces-gpu
+  annotations:
+    controller.devfile.io/pod-tolerations: |
+      [
+        {
+          "key": "node",
+          "value": "ops",
+          "effect": "NoSchedule"
+        }
+      ]
 attributes:
   controller.devfile.io/storage-type: ephemeral
 
