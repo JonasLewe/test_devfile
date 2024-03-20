@@ -12,20 +12,20 @@ attributes:
 #         revision: main
 components:
   - attributes:
-      container-overrides:
-        resources:
-          limits:
-            nvidia.com/gpu: '1'
-          requests:
-            nvidia.com/gpu: '1'
+      # container-overrides:
+      #   resources:
+      #     limits:
+      #       nvidia.com/gpu: '1'
+      #     requests:
+      #       nvidia.com/gpu: '1'
       controller.devfile.io/merge-contribution: true
-      tolerations:
-        - key: nvidia.com/gpu
-          operator: Exists
-          effect: NoSchedule
-        - key: node
-          value: ops
-          effect: NoSchedule
+      # tolerations:
+      #   - key: nvidia.com/gpu
+      #     operator: Exists
+      #     effect: NoSchedule
+      #   - key: node
+      #     value: ops
+      #     effect: NoSchedule
     container:
       image: ghcr.io/redhat-na-ssa/udi-cuda:latest
       memoryLimit: 256Mi
