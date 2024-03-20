@@ -1,58 +1,17 @@
-# schemaVersion: 2.2.0
-# metadata:
-#   name: devspaces-gpu
-# attributes:
-#   controller.devfile.io/storage-type: ephemeral
-# # projects:
-# #   - name: devspaces-gpu
-# #     git:
-# #       remotes:
-# #         origin: "https://github.com/bkoz/devspaces.git"
-# #       checkoutFrom:
-# #         revision: main
-# components:
-#   - attributes:
-#       container-overrides:
-#         resources:
-#           limits:
-#             nvidia.com/gpu: '1'
-#           requests:
-#             nvidia.com/gpu: '1'
-#       controller.devfile.io/merge-contribution: true
-      
-#     container:
-#       image: ghcr.io/redhat-na-ssa/udi-cuda:latest
-#       memoryLimit: 256Mi
-#       cpuLimit: 10m
-#       mountSources: true
-#       sourceMapping: /projects
-#       tolerations:
-#       #   - key: nvidia.com/gpu
-#       #     operator: Exists
-#       #     effect: NoSchedule
-#         - key: node
-#           value: ops
-#           effect: NoSchedule
-#     name: python
-
 schemaVersion: 2.2.0
 metadata:
   name: devspaces-gpu
-  annotations:
-    controller.devfile.io/pod-tolerations: |
-      [
-        {
-          "key": "node",
-          "value": "ops",
-          "effect": "NoSchedule"
-        }
-      ]
 attributes:
   controller.devfile.io/storage-type: ephemeral
-
+# projects:
+#   - name: devspaces-gpu
+#     git:
+#       remotes:
+#         origin: "https://github.com/bkoz/devspaces.git"
+#       checkoutFrom:
+#         revision: main
 components:
-  - name: python
-    attributes:
+  - attributes:
       container-overrides:
         resources:
           limits:
@@ -60,10 +19,51 @@ components:
           requests:
             nvidia.com/gpu: '1'
       controller.devfile.io/merge-contribution: true
-    
+      
     container:
       image: ghcr.io/redhat-na-ssa/udi-cuda:latest
       memoryLimit: 256Mi
       cpuLimit: 10m
       mountSources: true
       sourceMapping: /projects
+      tolerations:
+      #   - key: nvidia.com/gpu
+      #     operator: Exists
+      #     effect: NoSchedule
+        - key: node
+          value: ops
+          effect: NoSchedule
+    name: python
+
+# schemaVersion: 2.2.0
+# metadata:
+#   name: devspaces-gpu
+#   annotations:
+#     controller.devfile.io/pod-tolerations: |
+#       [
+#         {
+#           "key": "node",
+#           "value": "ops",
+#           "effect": "NoSchedule"
+#         }
+#       ]
+# attributes:
+#   controller.devfile.io/storage-type: ephemeral
+
+# components:
+#   - name: python
+#     attributes:
+#       container-overrides:
+#         resources:
+#           limits:
+#             nvidia.com/gpu: '1'
+#           requests:
+#             nvidia.com/gpu: '1'
+#       controller.devfile.io/merge-contribution: true
+    
+#     container:
+#       image: ghcr.io/redhat-na-ssa/udi-cuda:latest
+#       memoryLimit: 256Mi
+#       cpuLimit: 10m
+#       mountSources: true
+#       sourceMapping: /projects
