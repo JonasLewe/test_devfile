@@ -12,12 +12,12 @@ attributes:
 #         revision: main
 components:
   - attributes:
-      container-overrides:
-        resources:
-          limits:
-            nvidia.com/gpu: '1'
-          requests:
-            nvidia.com/gpu: '1'
+      # container-overrides:
+      #   resources:
+      #     limits:
+      #       nvidia.com/gpu: '1'
+      #     requests:
+      #       nvidia.com/gpu: '1'
       controller.devfile.io/merge-contribution: true
       
     container:
@@ -33,7 +33,10 @@ components:
       #   - key: node
       #     value: ops
       #     effect: NoSchedule
-    name: python
+      name: python
+      # args:
+      #   - >
+      #     pip install torch
 
 # schemaVersion: 2.2.0
 # metadata:
