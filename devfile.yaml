@@ -20,9 +20,10 @@ components:
       controller.devfile.io/merge-contribution: true
     container:
       # image: ghcr.io/redhat-na-ssa/udi-cuda:11.8.0-cudnn8-devel-ubi8
-      image: ghcr.io/redhat-na-ssa/udi-cuda:latest
-      memoryLimit: 2G
-      cpuLimit: 1000m
+      # image: ghcr.io/redhat-na-ssa/udi-cuda:latest
+      image: docker.io/library/alpine:latest
+      memoryLimit: 128Mi
+      cpuLimit: 10m
       mountSources: true
       sourceMapping: /projects
-    name: python
+    name: alpine
