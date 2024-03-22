@@ -92,7 +92,12 @@ attributes:
 #         revision: main
 
 components:
-  - name: universal-developer-image
+  - attributes:
+      container-overrides:
+        resources:
+          limits:
+            nvidia.com/gpu: '0'
+      controller.devfile.io/merge-contribution: true
     container:
       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
       # Defines the initial container image to use. Here, a standard redhat developer image is used.
@@ -109,6 +114,7 @@ components:
 
       sourceMapping: /projects
       # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
+    name: universal-developer-image
 
 ### Persistent storage definition ###
   # - name: persistent-storage
