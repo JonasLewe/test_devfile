@@ -66,9 +66,9 @@
 
 schemaVersion: 2.1.0
 metadata:
-  attributes:
-    metadata-name-field: generateName
-    metadata-name-original-value: initial-devspace-setup
+  # attributes:
+  #   metadata-name-field: generateName
+  #   metadata-name-original-value: initial-devspace-setup
   name: initial-devspace-setup
   namespace: dev-mlops-template
 attributes:
