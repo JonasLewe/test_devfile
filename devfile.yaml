@@ -83,15 +83,15 @@ components:
     container:
       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
 
-      memoryLimit: 128Mi
+      # memoryLimit: 128Mi
       # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
 
-      cpuLimit: 1000m 
+      # cpuLimit: 1000m 
       # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
 
-      mountSources: true
+      # mountSources: true
       # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
 
-      sourceMapping: /projects
+      # sourceMapping: /projects
 commands: []
 
