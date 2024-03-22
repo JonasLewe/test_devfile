@@ -64,24 +64,21 @@
 
 
 
-schemaVersion: 2.1.0
+schemaVersion: 2.2.0
 metadata:
-  attributes:
-    metadata-name-field: generateName
-    metadata-name-original-value: mlops-template
-  name: mlops-template
-  namespace: dev-ibm-mlops-template
+  name: initial-devspace-setup
+  namespace: dev-mlops-template
 attributes:
   che-theia.eclipse.org/sidecar-policy: mergeImage
 projects:
   - attributes: {}
-    name: mlops-template
+    name: initial-devspace-setup
     git:
       remotes:
-        origin: https://gitlab.fcas-offen-2bf7313ba140d2ec7addb97cacba3e38-i003.eu-de.containers.appdomain.cloud/ibm/mlops-template.git
+        origin: https://github.com/JonasLewe/test_devfile
 components:
-  - name: universal-developer-image
+  - name: alpine
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
+      image: docker.io/library/alpine:latest
 commands: []
 
