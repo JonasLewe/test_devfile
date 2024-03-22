@@ -34,7 +34,8 @@
 
 #     container:
 #       image: docker.io/library/alpine:latest
-#       # Defines the initial container image to use. Here, a minimal Alpine image is specified for a lightweight setup.
+#       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
+#       # Defines the initial container image to use. Here, a standard redhat developer image is used.
 #       # Replace with an appropriate image according to your project needs.
 
 #       memoryLimit: 128Mi
@@ -66,13 +67,11 @@
 
 schemaVersion: 2.1.0
 metadata:
-  # attributes:
-  #   metadata-name-field: generateName
-  #   metadata-name-original-value: initial-devspace-setup
   name: initial-devspace-setup
   namespace: dev-mlops-template
 attributes:
-  che-theia.eclipse.org/sidecar-policy: mergeImage
+  controller.devfile.io/storage-type: ephemeral 
+  # che-theia.eclipse.org/sidecar-policy: mergeImage
 projects:
   - attributes: {}
     name: initial-devspace-setup
@@ -83,5 +82,16 @@ components:
   - name: universal-developer-image
     container:
       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
+
+      memoryLimit: 128Mi
+      # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
+
+      cpuLimit: 1000m 
+      # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
+
+      mountSources: true
+      # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
+
+      sourceMapping: /projects
 commands: []
 
