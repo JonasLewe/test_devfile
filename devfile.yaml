@@ -1,63 +1,87 @@
-schemaVersion: 2.2.0
-metadata:
-  name: initial-devspace-setup
-attributes:
-### Enable container build process ###
-  # controller.devfile.io/scc: container-build
-  # Enables permission for the container build process. Not enabled by default.
-  # This is necessary if you plan to build containers within your workspace.
+# schemaVersion: 2.2.0
+# metadata:
+#   name: initial-devspace-setup
+# attributes:
+# ### Enable container build process ###
+#   # controller.devfile.io/scc: container-build
+#   # Enables permission for the container build process. Not enabled by default.
+#   # This is necessary if you plan to build containers within your workspace.
 
-### Storage type definition ###
-  controller.devfile.io/storage-type: ephemeral 
-  # Options:
-  # 'ephemeral' means data will be deleted after the workspace is stopped, which is suitable for temporary data or testing environments.
-  # 'persistent', retains data across workspace restarts, recommended for long-term projects.
+# ### Storage type definition ###
+#   controller.devfile.io/storage-type: ephemeral 
+#   # Options:
+#   # 'ephemeral' means data will be deleted after the workspace is stopped, which is suitable for temporary data or testing environments.
+#   # 'persistent', retains data across workspace restarts, recommended for long-term projects.
 
-### Git repository definition###
-# Uncomment and configure this section to pull a project's codebase into the development environment.
-# projects:
-#   - name: my-git-codebase
-#     git:
-#       remotes:
-#         origin: "https://github.com/<username>/<repository>.git"
-#       checkoutFrom:
-#         revision: main
+# ### Git repository definition###
+# # Uncomment and configure this section to pull a project's codebase into the development environment.
+# # projects:
+# #   - name: my-git-codebase
+# #     git:
+# #       remotes:
+# #         origin: "https://github.com/<username>/<repository>.git"
+# #       checkoutFrom:
+# #         revision: main
 
-components:
-  - attributes:
-      container-overrides:
-        resources:
-          limits:
-            nvidia.com/gpu: '0' # Set this value to '1' if a GPU is required (yet to be implemented)
-      controller.devfile.io/merge-contribution: true
-      # Allows overriding of component settings by other devfiles. Useful for customizing or extending configurations in collaborative projects.
+# components:
+#   - attributes:
+#       container-overrides:
+#         resources:
+#           limits:
+#             nvidia.com/gpu: '0' # Set this value to '1' if a GPU is required (yet to be implemented)
+#       controller.devfile.io/merge-contribution: true
+#       # Allows overriding of component settings by other devfiles. Useful for customizing or extending configurations in collaborative projects.
 
-    container:
-      image: docker.io/library/alpine:latest
-      # Defines the initial container image to use. Here, a minimal Alpine image is specified for a lightweight setup.
-      # Replace with an appropriate image according to your project needs.
+#     container:
+#       image: docker.io/library/alpine:latest
+#       # Defines the initial container image to use. Here, a minimal Alpine image is specified for a lightweight setup.
+#       # Replace with an appropriate image according to your project needs.
 
-      memoryLimit: 128Mi
-      # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
+#       memoryLimit: 128Mi
+#       # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
 
-      cpuLimit: 1000m 
-      # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
+#       cpuLimit: 1000m 
+#       # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
 
-      mountSources: true
-      # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
+#       mountSources: true
+#       # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
 
-      sourceMapping: /projects
-      # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
-    name: alpine
+#       sourceMapping: /projects
+#       # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
+#     name: alpine
         
-### Persistent storage definition ###
-  # - name: persistent-storage
-  #   volume:
-  #     size: 1G
-  #   container:
-  #     volumeMounts:
-  #     - name: persistent-storage
-  #       path: /data # Sets the mount path for persistent storage in the container. Adjust this path based on where your application expects to find persistent data.
+# ### Persistent storage definition ###
+#   # - name: persistent-storage
+#   #   volume:
+#   #     size: 1G
+#   #   container:
+#   #     volumeMounts:
+#   #     - name: persistent-storage
+#   #       path: /data # Sets the mount path for persistent storage in the container. Adjust this path based on where your application expects to find persistent data.
 
-### Custom command definitions ### 
+# ### Custom command definitions ### 
+# commands: []
+
+
+
+schemaVersion: 2.1.0
+metadata:
+  attributes:
+    metadata-name-field: generateName
+    metadata-name-original-value: mlops-template
+  name: mlops-template
+  namespace: dev-ibm-mlops-template
+attributes:
+  che-theia.eclipse.org/sidecar-policy: mergeImage
+projects:
+  - attributes: {}
+    name: mlops-template
+    git:
+      remotes:
+        origin: https://gitlab.fcas-offen-2bf7313ba140d2ec7addb97cacba3e38-i003.eu-de.containers.appdomain.cloud/ibm/mlops-template.git
+components:
+  - name: universal-developer-image
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
 commands: []
+
