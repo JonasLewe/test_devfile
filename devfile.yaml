@@ -33,6 +33,7 @@ components:
       controller.devfile.io/merge-contribution: true
       # Allows overriding of component settings by other devfiles. Useful for customizing or extending configurations in collaborative projects.
 
+  - name: alpine
     container:
       image: docker.io/library/alpine:latest
       # Defines the initial container image to use. Here, a minimal Alpine image is specified for a lightweight setup.
@@ -41,15 +42,14 @@ components:
       memoryLimit: 128Mi
       # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
 
-      cpuLimit: 10m 
-      # Limits CPU usage to 10 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
+      cpuLimit: 1000m 
+      # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
 
       mountSources: true
       # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
 
       sourceMapping: /projects
       # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
-    name: alpine
 
 ### Persistent storage definition ###
   # - name: persistent-storage
