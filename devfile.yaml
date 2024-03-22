@@ -24,7 +24,8 @@ attributes:
 #         revision: main
 
 components:
-  - attributes:
+  - name: gpu-config
+    attributes:
       container-overrides:
         resources:
           limits:
