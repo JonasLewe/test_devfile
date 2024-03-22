@@ -51,16 +51,16 @@
 #       # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
 #     name: alpine
         
-# ### Persistent storage definition ###
-#   # - name: persistent-storage
-#   #   volume:
-#   #     size: 1G
-#   #   container:
-#   #     volumeMounts:
-#   #     - name: persistent-storage
-#   #       path: /data # Sets the mount path for persistent storage in the container. Adjust this path based on where your application expects to find persistent data.
+### Persistent storage definition ###
+  # - name: persistent-storage
+  #   volume:
+  #     size: 1G
+  #   container:
+  #     volumeMounts:
+  #     - name: persistent-storage
+  #       path: /data # Sets the mount path for persistent storage in the container. Adjust this path based on where your application expects to find persistent data.
 
-# ### Custom command definitions ### 
+### Custom command definitions ### 
 # commands: []
 
 
@@ -68,10 +68,13 @@
 schemaVersion: 2.1.0
 metadata:
   name: initial-devspace-setup
-  namespace: dev-mlops-template
+  # namespace: dev-org-project-template
 attributes:
+### Storage type definition ###
   controller.devfile.io/storage-type: ephemeral 
-  # che-theia.eclipse.org/sidecar-policy: mergeImage
+  # Options:
+  # 'ephemeral' means data will be deleted after the workspace is stopped, which is suitable for temporary data or testing environments.
+  # 'persistent', retains data across workspace restarts, recommended for long-term projects.
 projects:
   - attributes: {}
     name: initial-devspace-setup
@@ -83,15 +86,27 @@ components:
     container:
       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
 
-      # memoryLimit: 128Mi
+      memoryLimit: 128Mi
       # Limits the memory for the container to 128MB. Adjust this setting based on your application's requirements to ensure optimal performance.
 
-      # cpuLimit: 1000m 
+      cpuLimit: 1000m 
       # Limits CPU usage to 1000 millicores. Increase this limit based on your application's CPU requirements to avoid performance bottlenecks.
 
-      # mountSources: true
+      mountSources: true
       # Mounts the project in the container. This is essential for development, ensuring your source code is accessible within the container.
 
-      # sourceMapping: /projects
+      sourceMapping: /projects
+      # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
+
+### Persistent storage definition ###
+  # - name: persistent-storage
+  #   volume:
+  #     size: 1G
+  #   container:
+  #     volumeMounts:
+  #     - name: persistent-storage
+  #       path: /data # Sets the mount path for persistent storage in the container. Adjust this path based on where your application expects to find persistent data.
+
+### Custom command definitions ### 
 commands: []
 
