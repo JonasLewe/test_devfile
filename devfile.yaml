@@ -24,7 +24,14 @@ attributes:
 #         revision: main
 
 components:
-  - name: alpine
+  - attributes:
+      container-overrides:
+        resources:
+          limits:
+            nvidia.com/gpu: '0' # Set this value to '1' if a GPU is required (yet to be implemented)
+      controller.devfile.io/merge-contribution: true
+      # Allows overriding of component settings by other devfiles. Useful for customizing or extending configurations in collaborative projects.
+
     container:
       image: docker.io/library/alpine:latest
       # Defines the initial container image to use. Here, a minimal Alpine image is specified for a lightweight setup.
@@ -41,15 +48,8 @@ components:
 
       sourceMapping: /projects
       # Sets the mount path for the project in the container. Adjust this path as needed to match your project structure.
-      
-      resources:
-        limits:
-          nvidia.com/gpu: '0' # Set this value to '1' if a GPU is required (yet to be implemented)
-          
-    attributes:
-      controller.devfile.io/merge-contribution: true
-      # Allows overriding of component settings by other devfiles. Useful for customizing or extending configurations in collaborative projects.
-
+    name: alpine
+        
 ### Persistent storage definition ###
   # - name: persistent-storage
   #   volume:
