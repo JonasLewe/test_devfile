@@ -1,24 +1,10 @@
 schemaVersion: 2.1.0
 metadata:
-  attributes:
-    metadata-name-field: generateName
-    metadata-name-original-value: mlops-template
-  name: mlops-template
-  # namespace: dev-ibm-mlops-templates
-attributes:
-  che-theia.eclipse.org/sidecar-policy: mergeImage
-projects:
-  - attributes: {}
-    name: mlops-template
-    git:
-      remotes:
-        origin: https://gitlab.fcas-offen-2bf7313ba140d2ec7addb97cacba3e38-i003.eu-de.containers.appdomain.cloud/ibm/mlops-template.git
+  name: empty-u2zb
+  namespace: dev-ibm-jonas-devspace
 components:
   - name: universal-developer-image
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
-#components:
-#  - name: my-new-container
-#    container:
-#      image: python:3.10-slim
-commands: []
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:720d4bff5924ac76af5b25606ebfb2bcf853212af6c8202f591c4954a88f57f6
+      mountSources: true
+      sourceMapping: /projects
