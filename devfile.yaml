@@ -13,10 +13,10 @@ projects:
     git:
       remotes:
         origin: https://gitlab.fcas-offen-2bf7313ba140d2ec7addb97cacba3e38-i003.eu-de.containers.appdomain.cloud/ibm/mlops-template.git
- components:
-   - name: universal-developer-image
-     container:
-       image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
+components:
+  - name: universal-developer-image
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:7e942155ebd808256e34a9411b85e41ae41d771353146cf6c15ed0b6bd4caacd
 #components:
 #  - name: my-new-container
 #    container:
